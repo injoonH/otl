@@ -1,3 +1,5 @@
+import { GoogleAnalytics } from '@next/third-parties/google'
+import { Analytics } from '@vercel/analytics/react'
 import type { Metadata } from 'next'
 
 import { pretendard } from '@/ui/font'
@@ -10,7 +12,11 @@ export const metadata: Metadata = {
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <html lang="ko-KR" className={pretendard.className}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
+      <GoogleAnalytics gaId="G-8LH4268166" />
     </html>
   )
 }
