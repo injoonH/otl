@@ -9,13 +9,14 @@ coverage/
 out/
 
 # production
-build
+build/
 
 # misc
 .DS_Store
 *.pem
 
 # local env files
+.env
 .env*.local
 
 # vercel
