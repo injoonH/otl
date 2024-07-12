@@ -1,4 +1,11 @@
-dist
-
-node_modules
+# dependencies
 bun.lockb
+node_modules/
+
+# next.js
+.next/
+out/
+
+# production
+build/
+dist/
