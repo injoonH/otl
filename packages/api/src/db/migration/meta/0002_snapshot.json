@@ -1,0 +1,238 @@
+{
+  "id": "e15206bc-aebe-4b03-bd4e-3fb22928879c",
+  "prevId": "478ff005-e67c-4892-a6ad-80f16df8c895",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.otl_category": {
+      "name": "otl_category",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "smallint",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name_ko": {
+          "name": "name_ko",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name_en": {
+          "name": "name_en",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.otl_course": {
+      "name": "otl_course",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "year": {
+          "name": "year",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "semester": {
+          "name": "semester",
+          "type": "semester",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "category_id": {
+          "name": "category_id",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "code": {
+          "name": "code",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "no": {
+          "name": "no",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "class": {
+          "name": "class",
+          "type": "varchar(8)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "has_syllabus": {
+          "name": "has_syllabus",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "au": {
+          "name": "au",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "credit": {
+          "name": "credit",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "professor": {
+          "name": "professor",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "capacity": {
+          "name": "capacity",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "audience": {
+          "name": "audience",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "place": {
+          "name": "place",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "note": {
+          "name": "note",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "department_id": {
+          "name": "department_id",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "delivery_mode": {
+          "name": "delivery_mode",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "otl_course_year_semester_index": {
+          "name": "otl_course_year_semester_index",
+          "columns": [
+            {
+              "expression": "year",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "semester",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "otl_course_category_id_otl_category_id_fk": {
+          "name": "otl_course_category_id_otl_category_id_fk",
+          "tableFrom": "otl_course",
+          "tableTo": "otl_category",
+          "columnsFrom": ["category_id"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "otl_course_department_id_otl_department_id_fk": {
+          "name": "otl_course_department_id_otl_department_id_fk",
+          "tableFrom": "otl_course",
+          "tableTo": "otl_department",
+          "columnsFrom": ["department_id"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.otl_department": {
+      "name": "otl_department",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "smallint",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name_ko": {
+          "name": "name_ko",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name_en": {
+          "name": "name_en",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {
+    "public.semester": {
+      "name": "semester",
+      "schema": "public",
+      "values": ["spring", "summer", "fall", "winter"]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

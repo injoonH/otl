@@ -192,3 +192,9 @@ export const categories = [
     nameEn: 'Internship',
   },
 ] as const satisfies (typeof category.$inferInsert)[]
+
+export type CategoryNameKo = (typeof categories)[number]['nameKo']
+
+export const categoryKoreanNameIdMap = new Map(
+  categories.map(({ id, nameKo }) => [nameKo, id]),
+)

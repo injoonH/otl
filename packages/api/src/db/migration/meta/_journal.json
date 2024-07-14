@@ -15,6 +15,13 @@
       "when": 1720753801930,
       "tag": "0001_lazy_kulan_gath",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1720949701449,
+      "tag": "0002_empty_lady_deathstrike",
+      "breakpoints": true
     }
   ]
 }
