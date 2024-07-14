@@ -1,0 +1,25 @@
+name: otl-prod
+
+services:
+  api:
+    image: yuwol/otl-api
+    container_name: otl-prod-api
+    env_file: .env
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16.3
+    container_name: otl-prod-db
+    ports:
+      - '${DB_PORT:?err}:5432'
+    env_file: .env
+    environment:
+      - POSTGRES_USER=${DB_USER:?err}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:?err}
+      - POSTGRES_DB=${DB_NAME:?err}
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
