@@ -35,6 +35,7 @@
     /* Language and Environment */
     "jsx": "preserve",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "target": "ESNext",
 
     /* Projects */
     "incremental": true,

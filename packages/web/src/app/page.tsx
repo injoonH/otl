@@ -1,49 +1,10 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { ColumnDef } from '@tanstack/react-table'
-import type { InferResponseType } from 'hono/client'
 
 import { client } from '@/lib/api'
 import { DataTable } from '@/ui/component/DataTable/DataTable'
-
-type ElementType<T> = T extends (infer U)[] ? U : never
-type Course = ElementType<InferResponseType<typeof client.courses.$get>>
-
-const columns: ColumnDef<Course>[] = [
-  {
-    accessorKey: 'department.nameKo',
-    header: 'Department',
-  },
-  {
-    accessorKey: 'code',
-    header: 'Code',
-  },
-  {
-    accessorKey: 'title',
-    header: 'Title',
-  },
-  {
-    accessorKey: 'class',
-    header: 'Class',
-  },
-  {
-    accessorKey: 'credit',
-    header: 'Credit',
-  },
-  {
-    accessorKey: 'au',
-    header: 'AU',
-  },
-  {
-    accessorKey: 'professor',
-    header: 'Professor',
-  },
-  {
-    accessorKey: 'place',
-    header: 'Place',
-  },
-]
+import { columns } from '@/ui/component/DataTable/columns'
 
 const Home: React.FC = () => {
   const { data: courses } = useQuery({
@@ -59,8 +20,10 @@ const Home: React.FC = () => {
   if (!courses) return <div>Loading...</div>
 
   return (
-    <main>
-      <DataTable columns={columns} data={courses} />
+    <main className="min-h-svh content-center">
+      <div className="mx-auto max-w-5xl">
+        <DataTable columns={columns} data={courses} />
+      </div>
     </main>
   )
 }
