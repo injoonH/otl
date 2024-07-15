@@ -5,8 +5,6 @@ import { Button } from '@shadcn/button'
 import { Input } from '@shadcn/input'
 import { Table } from '@tanstack/react-table'
 
-import { categories, departments } from '@/data/data'
-
 import { DataTableFacetedFilter } from './DataTableFacetedFilter'
 import { DataTableViewOptions } from './DataTableViewOptions'
 
@@ -19,6 +17,9 @@ export const DataTableToolbar = <TData,>({
 }: DataTableToolbarProps<TData>) => {
   const isFiltered = table.getState().columnFilters.length > 0
 
+  const categoryColumn = table.getColumn('category')
+  const departmentColumn = table.getColumn('department')
+
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
@@ -30,18 +31,22 @@ export const DataTableToolbar = <TData,>({
           }
           className="h-8 w-[150px] lg:w-[250px]"
         />
-        {table.getColumn('category') && (
+        {categoryColumn && (
           <DataTableFacetedFilter
-            column={table.getColumn('category')}
+            column={categoryColumn}
             title="과목 구분"
-            options={categories}
+            options={Array.from(
+              categoryColumn.getFacetedUniqueValues().keys(),
+            ).map((name) => ({ value: name, label: name }))}
           />
         )}
-        {table.getColumn('department') && (
+        {departmentColumn && (
           <DataTableFacetedFilter
-            column={table.getColumn('department')}
+            column={departmentColumn}
             title="학과"
-            options={departments}
+            options={Array.from(
+              departmentColumn.getFacetedUniqueValues().keys(),
+            ).map((name) => ({ value: name, label: name }))}
           />
         )}
         {isFiltered && (
