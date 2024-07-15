@@ -13,7 +13,7 @@ declare module '@tanstack/react-table' {
 }
 
 type ElementType<T> = T extends (infer U)[] ? U : never
-type Course = ElementType<InferResponseType<typeof client.courses.$get>>
+export type Course = ElementType<InferResponseType<typeof client.courses.$get>>
 
 export const columns: ColumnDef<Course>[] = [
   {
@@ -79,7 +79,7 @@ export const columns: ColumnDef<Course>[] = [
   },
   {
     id: 'actions',
-    cell: ({ row }) => <DataTableRowActions row={row} />,
-    meta: { title: 'Actions' },
+    cell: ({ row }) =>
+      row.original.hasSyllabus ? <DataTableRowActions row={row} /> : null,
   },
 ]
