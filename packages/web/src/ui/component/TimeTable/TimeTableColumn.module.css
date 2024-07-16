@@ -1,0 +1,27 @@
+.timeTableColumn {
+  position: relative;
+
+  border-right: 1px solid #e2e8f0;
+  min-width: 80px;
+
+  &:first-of-type {
+    border-left: 1px solid #e2e8f0;
+  }
+}
+
+.panning {
+  position: absolute;
+
+  border-radius: 4px;
+  width: 100%;
+
+  background-color: rgb(229 76 102 / 0.3);
+}
+
+.event {
+  position: absolute;
+
+  border-left: 3px solid;
+  border-radius: 4px;
+  width: 100%;
+}

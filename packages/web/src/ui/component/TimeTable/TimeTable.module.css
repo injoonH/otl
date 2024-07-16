@@ -1,0 +1,52 @@
+.timeTable {
+  display: flex;
+}
+
+.timeList {
+  padding-right: 8px;
+}
+
+.time {
+  height: 60px;
+
+  user-select: none;
+
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 300;
+  text-align: right;
+  text-wrap: nowrap;
+  color: #9ca3af;
+
+  &:last-child {
+    height: 0;
+  }
+
+  & > span {
+    position: relative;
+    top: -8px;
+  }
+}
+
+.gridContainer {
+  position: relative;
+
+  display: flex;
+
+  border-bottom: 1px solid #e2e8f0;
+  width: 100%;
+}
+
+.gridLine {
+  height: 60px;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+
+    margin-top: -1px;
+    border-bottom: 1px solid #e2e8f0;
+    width: 100%;
+  }
+}
